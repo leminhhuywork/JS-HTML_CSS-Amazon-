@@ -1,6 +1,7 @@
-import { cart } from './data/cart.js'
+import { cart, addToCart, updateCartQuantity } from './data/cart.js'
 import { products } from './data/products.js'
 import { formatCurrency } from "./utils/money.js";
+
 
 let productsHTML = ''
 
@@ -53,29 +54,7 @@ products.forEach(product => {
             </div>`
 })
 
-const addToCart = (productId) => {
-    let matchingItem
-    cart.forEach(item => {
-        if (item.productId === productId) {
-            matchingItem = item
-        }
-    })
 
-    if (matchingItem) {
-        matchingItem.Quantity += 1
-    } else {
-        cart.push({
-            productId: productId,
-            Quantity: 1
-        });
-    }
-}
-const updateCartQuantity = () => {
-    let totalQuantity = 0
-    cart.forEach(item => totalQuantity += item.Quantity)
-
-    document.querySelector('.cart-quantity').innerHTML = totalQuantity
-}
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML
 

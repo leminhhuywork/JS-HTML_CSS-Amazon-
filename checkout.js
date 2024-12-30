@@ -2,11 +2,13 @@ import { cart, deleteFromCart } from './data/cart.js'
 import { products } from "./data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+console.log(cart);
 
 let cartItemHTML = ''
 cart.forEach(cartItem => {
     let matchingItem
     products.forEach(product => {
+
         if (product.id === cartItem.productId) {
             matchingItem = product
         }
@@ -84,7 +86,7 @@ document.querySelector('.order-summary').innerHTML = cartItemHTML
 
 
 document.querySelectorAll('.delete-quantity-link').forEach(link => {
-    const cartProductId = Number(link.dataset.productId)
+    const cartProductId = link.dataset.productId
     link.addEventListener('click', () => {
         deleteFromCart(cartProductId)
     })
